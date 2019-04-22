@@ -2,10 +2,11 @@ package wallet
 
 import (
 	"bytes"
+	"time"
+
 	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/btcsuite/btcd/wire"
-	"time"
 )
 
 type Coin interface {
@@ -21,12 +22,14 @@ const (
 	Zcash                = 133
 	BitcoinCash          = 145
 	Ethereum             = 60
+	Monero               = 128
 
-	TestnetBitcoin       = 1000000
-	TestnetLitecoin      = 1000001
-	TestnetZcash         = 1000133
-	TestnetBitcoinCash   = 1000145
-	TestnetEthereum      = 1000060
+	TestnetBitcoin     = 1000000
+	TestnetLitecoin    = 1000001
+	TestnetZcash       = 1000133
+	TestnetBitcoinCash = 1000145
+	TestnetEthereum    = 1000060
+	TestnetMonero      = 1000128
 )
 
 func (c *CoinType) String() string {
@@ -41,6 +44,8 @@ func (c *CoinType) String() string {
 		return "Litecoin"
 	case Ethereum:
 		return "Ethereum"
+	case Monero:
+		return "Monero"
 	case TestnetBitcoin:
 		return "Testnet Bitcoin"
 	case TestnetBitcoinCash:
@@ -51,6 +56,8 @@ func (c *CoinType) String() string {
 		return "Testnet Litecoin"
 	case TestnetEthereum:
 		return "Testnet Ethereum"
+	case TestnetMonero:
+		return "Testnet Monero"
 	default:
 		return ""
 	}
@@ -68,6 +75,8 @@ func (c *CoinType) CurrencyCode() string {
 		return "LTC"
 	case Ethereum:
 		return "ETH"
+	case Monero:
+		return "XMR"
 	case TestnetBitcoin:
 		return "TBTC"
 	case TestnetBitcoinCash:
@@ -78,6 +87,8 @@ func (c *CoinType) CurrencyCode() string {
 		return "TLTC"
 	case TestnetEthereum:
 		return "TETH"
+	case TestnetMonero:
+		return "TXMR"
 	default:
 		return ""
 	}
